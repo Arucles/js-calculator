@@ -43,6 +43,7 @@ const operatorButton = document.querySelectorAll('.operator-btn');
 const displayScreenNumber = document.querySelector('#display-number');
 const equalsButton = document.querySelector('#equals-btn');
 const clearButton = document.querySelector('#clear-btn');
+const pointButton = document.querySelector('#point-btn');
 let operators = '+*/-';
 let isFirstNumberDone= false;
 let isSecondNumberDone = false;
@@ -57,6 +58,8 @@ numberButton.forEach(button => {
         firstValueArray.push(numberButtonValue);
       }
       console.log(firstValueArray);
+      console.log(firstValueArray.join(""));
+      console.log("1st: "+isFirstNumberDone+" 2nd: "+ isSecondNumberDone+" op: " +isOperatorDone)
       displayScreenNumber.innerHTML = 
         parseInt(firstValueArray.join(""));
     } else {
@@ -64,6 +67,7 @@ numberButton.forEach(button => {
         secondValueArray.push(numberButtonValue);
       }
       console.log(firstValueArray, secondValueArray);
+      console.log("1st: "+isFirstNumberDone+" 2nd: "+ isSecondNumberDone+" op: " +isOperatorDone)
       displayScreenNumber.innerHTML = 
         parseInt(secondValueArray.join(""));
     }
@@ -104,7 +108,7 @@ equalsButton.addEventListener("click", ()=>{
   } else {
     num1 = parseInt(firstValueArray.join(""));
     num2 = parseInt(secondValueArray.join(""));
-    console.log(operator, num1, num2);
+    console.log(num1, operator, num2);
     result = operate(operator, num1, num2);
     displayScreenNumber.innerHTML = result;
     firstValueArray.splice(0, firstValueArray.length);
@@ -120,4 +124,15 @@ clearButton.addEventListener("click", ()=>{
   secondValueArray.splice(0, secondValueArray.length);
   operator="";
   displayScreenNumber.innerHTML = "00000";
+})
+
+pointButton.addEventListener("click", ()=>{
+
+  if (!isFirstNumberDone) {
+    firstValueArray.push("."); 
+    console.log(firstValueArray);
+    displayScreenNumber.innerHTML = 
+      firstValueArray.join("");
+      console.log("1st: "+isFirstNumberDone+" 2nd: "+ isSecondNumberDone+" op: " +isOperatorDone)
+  }
 })
